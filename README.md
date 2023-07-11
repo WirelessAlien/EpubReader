@@ -1,7 +1,7 @@
 <br/>
 <p align="center">
   <a href="https://github.com/WirelessAlien/EpubReader">
-    <img src="https://github.com/WirelessAlien/EpubReader/assets/121420261/50fc71f7-2e0f-4b04-ad8a-452182218950" alt="Logo" width="80" height="80">
+    <img src="https://github.com/WirelessAlien/EpubReader/blob/master/app/src/main/res/drawable/logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Epub Reader </h3>
