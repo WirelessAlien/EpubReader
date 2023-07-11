@@ -19,7 +19,7 @@
 
 ## About The Project:
 
-This is a Compact Epub Reader for Android, based on [Epublib](https://github.com/psiegman/epublib)
+This is a Compact Epub Reader for Android, based on [EPUB3Reader](https://github.com/pettarin/epub3reader) using [Epublib](https://github.com/psiegman/epublib). It is updated just to make it compatitable with newer Android version (and a few things removed). Other things are same as original project. 
 
 Features:
 
