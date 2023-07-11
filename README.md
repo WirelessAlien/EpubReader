@@ -10,7 +10,7 @@
     A Compact Epub Reader for Android 
     <br/>
     <br/>
-    <a href="[https://github.com/WirelessAlien/EpubReader](https://github.com/WirelessAlien/EpubReader/releases/tag/v1.0)">Release</a>
+    <a href="https://github.com/WirelessAlien/EpubReader/releases/tag/v1.0">Release</a>
     .
     <a href="https://github.com/WirelessAlien/EpubReader/issues">Report Bug</a>
     .
