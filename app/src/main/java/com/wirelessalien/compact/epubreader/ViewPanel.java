@@ -40,7 +40,7 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 
 // Abstract fragment that represents a general panel containing only the closing button
-public abstract class SplitPanel extends Fragment {
+public abstract class ViewPanel extends Fragment {
 
 	private RelativeLayout generalLayout;
 	protected int index;
@@ -56,7 +56,7 @@ public abstract class SplitPanel extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		navigator = ((MainActivity) getActivity()).navigator;
-		View v = inflater.inflate(R.layout.activity_split_panel, container,
+		View v = inflater.inflate(R.layout.activity_view_panel, container,
 				false);
 		created = false;
 		return v;

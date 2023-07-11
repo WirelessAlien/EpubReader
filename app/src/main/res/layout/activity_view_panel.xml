@@ -2,9 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/GeneralLayout"
+    android:theme="@style/Theme.Material3.DayNight"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplitPanel" >
+    tools:context=".ViewPanel" >
 
     <RelativeLayout
         android:id="@+id/ViewportLayout"

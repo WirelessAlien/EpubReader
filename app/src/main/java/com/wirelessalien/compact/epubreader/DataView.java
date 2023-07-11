@@ -34,7 +34,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 //Panel specialized in visualizing HTML-data
-public class DataView extends SplitPanel {
+public class DataView extends ViewPanel {
 	protected WebView view;
 	protected String data;
 	

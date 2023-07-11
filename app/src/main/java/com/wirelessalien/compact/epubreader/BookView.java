@@ -42,7 +42,7 @@ import android.webkit.WebSettings;
 import androidx.core.view.MotionEventCompat;
 
 // Panel specialized in visualizing EPUB pages
-public class BookView extends SplitPanel {
+public class BookView extends ViewPanel {
 	public ViewStateEnum state = ViewStateEnum.books;
 	protected String viewedPage;
 	protected WebView view;

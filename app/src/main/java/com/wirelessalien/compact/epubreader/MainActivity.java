@@ -24,7 +24,6 @@ THE SOFTWARE.
 
 package com.wirelessalien.compact.epubreader;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 	protected EpubNavigator navigator;
 	protected int panelCount;
 	protected String[] settings;
-	protected String epub_location; // Add this line
+	protected String epub_location;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +55,15 @@ public class MainActivity extends AppCompatActivity {
 		panelCount = 0;
 		settings = new String[8];
 
-		// LOADSTATE
 		SharedPreferences preferences = getPreferences(MODE_PRIVATE);
 		loadState(preferences);
 		navigator.loadViews(preferences);
 
 		if (panelCount == 0) {
-			epub_location = getIntent().getStringExtra("epub_location"); // Add this line
+			epub_location = getIntent().getStringExtra("epub_location");
+			if (epub_location == null || epub_location.isEmpty()) {
+				openFileChooser();
+			}
 		}
 	}
 
@@ -74,12 +75,11 @@ public class MainActivity extends AppCompatActivity {
 			navigator.loadViews(preferences);
 		}
 
-		if (epub_location != null && !epub_location.isEmpty()) { // Add this block
-			navigator.openBook(epub_location );
-			epub_location = null; // Reset the epub_location to prevent reopening the book on subsequent resumes
+		if (epub_location != null && !epub_location.isEmpty()) {
+			navigator.openBook(epub_location);
+			epub_location = null;
 		}
 	}
-
 
 	@Override
 	protected void onPause() {
@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
 		editor.commit();
 	}
 
-	// load the selected book
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (panelCount == 0) {
@@ -98,10 +97,16 @@ public class MainActivity extends AppCompatActivity {
 			navigator.loadViews(preferences);
 		}
 
-		if (resultCode == Activity.RESULT_OK) {
-			String path = data.getStringExtra(getString(R.string.bpath));
-			navigator.openBook(path );
-		}
+	}
+
+	private void openFileChooser() {
+
+		//open file chooser class
+		Intent goToChooser = new Intent(this, FileChooser.class);
+		goToChooser.putExtra(getString(R.string.second), getString(R.string.time));
+		startActivityForResult(goToChooser, 0);
+
+
 	}
 
 	// ---- Menu
@@ -151,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
 	// ----
 
 	// ---- Panels Manager
-	public void addPanel(SplitPanel p) {
+	public void addPanel(ViewPanel p) {
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
@@ -162,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 
-	public void removePanelWithoutClosing(SplitPanel p) {
+	public void removePanelWithoutClosing(ViewPanel p) {
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
@@ -173,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 
-	public void removePanel(SplitPanel p) {
+	public void removePanel(ViewPanel p) {
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 

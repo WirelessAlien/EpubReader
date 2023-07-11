@@ -33,7 +33,7 @@ import android.util.Log;
 
 public class EpubNavigator {
 	private EpubManipulator book;
-	private SplitPanel view;
+	private ViewPanel view;
 	private MainActivity activity;
 	private static Context context;
 
@@ -139,7 +139,7 @@ public class EpubNavigator {
 		loadPageIntoView( book.getCurrentPageURL() );
 	}
 
-    public void changePanel(SplitPanel p) {
+    public void changePanel(ViewPanel p) {
 		if (view != null) {
 			activity.removePanelWithoutClosing( view );
 			p.changeWeight( view.getWeight() );
@@ -219,7 +219,7 @@ public class EpubNavigator {
 		}
 	}
 
-	private SplitPanel newPanelByClassName(String className) {
+	private ViewPanel newPanelByClassName(String className) {
 		if (className.equals(BookView.class.getName()))
 			return new BookView();
 		if (className.equals(DataView.class.getName()))
