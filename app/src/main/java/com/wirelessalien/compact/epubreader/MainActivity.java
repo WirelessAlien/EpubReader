@@ -120,12 +120,6 @@ public class MainActivity extends AppCompatActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		switch (item.getItemId()) {
-		case R.id.FirstEPUB:
-			Intent goToChooser1 = new Intent(this, FileChooser.class);
-			goToChooser1.putExtra(getString(R.string.second),
-					getString(R.string.time));
-			startActivityForResult(goToChooser1, 0);
-			return true;
 
 			case R.id.Metadata:
 			if (!navigator.displayMetadata())

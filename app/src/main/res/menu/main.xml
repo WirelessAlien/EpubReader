@@ -1,11 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/FirstEPUB"
-        android:title="@string/Open_Book_1">
-    </item>
-
-    <item
         android:id="@+id/Metadata"
         android:title="@string/Show_Metadata">
     </item>
