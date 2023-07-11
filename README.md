@@ -43,11 +43,11 @@ Features:
 4. Push to the Branch
 5. Open a Pull Request
 
-## License
+## License:
 
-Distributed under the GPL3 License. See [LICENSE](https://github.com/WirelessAlien/EpubReader/blob/main/LICENSE.md) for more information.
+Distributed under the GPL3 License. See [LICENSE](https://github.com/WirelessAlien/EpubReader/blob/master/LICENSE) for more information.
 
-## Acknowledgements
+## Acknowledgements:
 
 * [Alberto Pettarin](https://github.com/pettarin) (This project is based on EPUB3Reader Android App)
-* [Icon](https://www.iconfinder.com/Neuroheat)
+* [Icon](https://www.iconfinder.com/Neuroheat) with [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
