@@ -19,7 +19,7 @@
 
 ## About The Project:
 
-This is a Compact Epub Reader for Android, based on [EPUB3Reader](https://github.com/pettarin/epub3reader) using [Epublib](https://github.com/psiegman/epublib). It is updated just to make it compatitable with newer Android version (and a few things removed). Other things are same as original project. 
+This is a Compact Epub Reader for Android, based on [EPUB3Reader](https://github.com/pettarin/epub3reader) using [Epublib](https://github.com/psiegman/epublib). It is updated just to make it compatible with newer Android version (and a few things removed). Other things are same as the original project.
 
 Features:
 
@@ -43,7 +43,7 @@ Drawbacks:
 ### Create A Pull Request
 
 1. Fork the Project
-2. Create your Feature Branch
+2. Create a New Branch
 3. Commit your Changes
 4. Push to the Branch
 5. Open a Pull Request
