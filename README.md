@@ -1,7 +1,7 @@
 <br/>
 <p align="center">
   <a href="https://github.com/WirelessAlien/EpubReader">
-    <img src="https://github.com/WirelessAlien/EpubReader/assets/121420261/50fc71f7-2e0f-4b04-ad8a-452182218950" alt="Logo" width="80" height="80">
+    <img src="https://github.com/WirelessAlien/EpubReader/blob/master/app/src/main/res/drawable/logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Epub Reader </h3>
@@ -10,7 +10,7 @@
     A Compact Epub Reader for Android 
     <br/>
     <br/>
-    <a href="https://github.com/WirelessAlien/EpubReader">View Demo</a>
+    <a href="https://github.com/WirelessAlien/EpubReader/releases/tag/v1.0">Release</a>
     .
     <a href="https://github.com/WirelessAlien/EpubReader/issues">Report Bug</a>
     .
@@ -19,7 +19,7 @@
 
 ## About The Project:
 
-This is a Compact Epub Reader for Android, based on [Epublib](https://github.com/psiegman/epublib)
+This is a Compact Epub Reader for Android, based on [EPUB3Reader](https://github.com/pettarin/epub3reader) using [Epublib](https://github.com/psiegman/epublib). It is updated just to make it compatitable with newer Android version (and a few things removed). Other things are same as original project. 
 
 Features:
 
@@ -28,6 +28,11 @@ Features:
 * Change Background Colour 
 * Change Text Colour 
 * Change Font
+
+Drawbacks:
+
+* No Book Library Support
+* For larger file it may take a few seconds to open
 
 
 
