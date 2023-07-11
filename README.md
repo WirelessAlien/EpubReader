@@ -34,6 +34,8 @@ Drawbacks:
 * No Book Library Support
 * For larger file it may take a few seconds to open
 
+Screenshots:
+
 <img src="https://github.com/WirelessAlien/EpubReader/assets/121420261/668299f8-f3fb-463b-bad0-0545856c580d" width="180" height="360" />
 <img src="https://github.com/WirelessAlien/EpubReader/assets/121420261/f24a7ef3-b951-4737-a51e-d4de2ce30cf2" width="180" height="360" />
 <img src="https://github.com/WirelessAlien/EpubReader/assets/121420261/cd05d45d-8bac-44e0-8b79-24ff50f03b96" width="180" height="360" />
