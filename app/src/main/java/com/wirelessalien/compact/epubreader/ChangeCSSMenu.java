@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 public class ChangeCSSMenu extends DialogFragment {
@@ -30,6 +31,7 @@ public class ChangeCSSMenu extends DialogFragment {
 			marginLInt, marginRInt;
 	protected MainActivity a;
 
+	@NonNull
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 
@@ -72,7 +74,7 @@ public class ChangeCSSMenu extends DialogFragment {
 		marginLInt = preferences.getInt("spinLeftValue", 0);
 		spinLeft.setSelection(marginLInt);
 
-		spinRight = (Spinner) view.findViewById(R.id.spinnerRight);
+		spinRight = view.findViewById(R.id.spinnerRight);
 		marginRInt = preferences.getInt("spinRightValue", 0);
 		spinRight.setSelection(marginRInt);
 
