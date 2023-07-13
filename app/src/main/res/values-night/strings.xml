@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_metadataNotFound">Metadata Not Found</string>
+    <string name="error_tocNotFound">Table of Contents Not Found</string>
+    <string name="error_CannotChangeStyle">Cannot Change Style</string>
+    <string name="error_cannotLoadState">Cannot Load Book State</string>
+    <string name="second">second</string>
+    <string name="time">time</string>
+</resources>
