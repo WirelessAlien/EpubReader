@@ -68,12 +68,13 @@ public class MainActivity extends AppCompatActivity {
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
 		if (panelCount == 0) {
 			SharedPreferences preferences = getPreferences(MODE_PRIVATE);
 			navigator.loadViews(preferences);
 		}
-
 	}
+
 
 	private void openFileChooser() {
 

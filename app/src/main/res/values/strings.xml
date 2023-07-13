@@ -55,9 +55,9 @@
     <string name="change_Font">Change Font</string>
     <string name="change_Font_Color">Font Color:</string>
     <string name="changeStyle">Change Style</string>
-    <string name="blue_rgb">#0000ff</string>
-    <string name="red_rgb">#ff0000</string>
-    <string name="green_rgb">#00ff00</string>
+    <string name="blue_rgb">#2196F3</string>
+    <string name="red_rgb">#F44336</string>
+    <string name="green_rgb">#4CAF50</string>
     <string name="black_rgb">#000000</string>
     <string name="white_rgb">#ffffff</string>
     <string name="error_CannotChangeStyle">Cannot Change Style!</string>

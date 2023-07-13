@@ -46,31 +46,31 @@ public class ChangeCSSMenu extends DialogFragment {
 
 		final SharedPreferences preferences = a.getPreferences(Context.MODE_PRIVATE);
 
-		spinColor = (Spinner) view.findViewById(R.id.spinnerColor);
+		spinColor = view.findViewById(R.id.spinnerColor);
 		colInt = preferences.getInt("spinColorValue", 0);
 		spinColor.setSelection(colInt);
 
-		spinBack = (Spinner) view.findViewById(R.id.spinnerBackgroundColor );
+		spinBack = view.findViewById(R.id.spinnerBackgroundColor );
 		backInt = preferences.getInt("spinBackValue", 0);
 		spinBack.setSelection(backInt);
 
-		spinFontStyle = (Spinner) view.findViewById(R.id.spinnerFontFamily);
+		spinFontStyle = view.findViewById(R.id.spinnerFontFamily);
 		fontInt = preferences.getInt("spinFontStyleValue", 0);
 		spinFontStyle.setSelection(fontInt);
 
-		spinAlignText = (Spinner) view.findViewById(R.id.spinnerAlign);
+		spinAlignText = view.findViewById(R.id.spinnerAlign);
 		alignInt = preferences.getInt("spinAlignTextValue", 0);
 		spinAlignText.setSelection(alignInt);
 
-		spinFontSize = (Spinner) view.findViewById(R.id.spinnerFS);
+		spinFontSize = view.findViewById(R.id.spinnerFS);
 		sizeInt = preferences.getInt("spinFontSizeValue", 0);
 		spinFontSize.setSelection(sizeInt);
 
-		spinLineH = (Spinner) view.findViewById(R.id.spinnerLH);
+		spinLineH = view.findViewById(R.id.spinnerLH);
 		heightInt = preferences.getInt("spinLineHValue", 0);
 		spinLineH.setSelection(heightInt);
 
-		spinLeft = (Spinner) view.findViewById(R.id.spinnerLeft);
+		spinLeft = view.findViewById(R.id.spinnerLeft);
 		marginLInt = preferences.getInt("spinLeftValue", 0);
 		spinLeft.setSelection(marginLInt);
 
@@ -78,7 +78,7 @@ public class ChangeCSSMenu extends DialogFragment {
 		marginRInt = preferences.getInt("spinRightValue", 0);
 		spinRight.setSelection(marginRInt);
 
-		defaultButton = (Button) view.findViewById(R.id.buttonDefault);
+		defaultButton = view.findViewById(R.id.buttonDefault);
 		// editTextTop = (EditText) view.findViewById(R.id.editText1);
 		// editTextBottom = (EditText) view.findViewById(R.id.editText2);
 		// editTextLeft = (EditText) view.findViewById(R.id.editText3);
