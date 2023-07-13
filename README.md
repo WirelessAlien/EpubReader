@@ -23,16 +23,20 @@ This is a Compact Epub Reader for Android, based on [EPUB3Reader](https://github
 
 Features:
 
+
+* Open Epub File
 * Show Metadata
 * Show Table of Contents (TOC)
+* Support for Inner Reference of Epub 
 * Change Background Colour 
 * Change Text Colour 
 * Change Font
+* ...
 
 Drawbacks:
 
-* No Book Library Support
-* For larger file it may take a few seconds to open
+* No Library Support
+* For Larger File It Takes Some Time To Load Epub File 
 
 Screenshots:
 
