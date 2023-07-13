@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/Metadata"
+        android:title="@string/Show_Metadata">
+    </item>
+
+    <item
+        android:id="@+id/tableOfContents"
+        android:title="@string/Table_of_Contents">
+    </item>
+
+    <item
+        android:id="@+id/Style"
+        android:title="@string/changeStyle"/>
+
+</menu>
