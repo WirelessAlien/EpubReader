@@ -1,0 +1,14 @@
+This is a Compact Epub Reader for Android, based on EPUB3Reader using Epublib. It is updated just to make it compatible with newer Android version (and a few things removed). Other things are same as the original project.
+
+Features:
+ Open Epub File
+ Show Metadata
+ Show Table of Contents (TOC)
+ Support for Inner Reference of Epub
+ Change Background Colour
+ Change Text Colour
+ Change Font...
+ Drawbacks:
+
+No Library Support
+ For Larger File It Takes Some Time To Load Epub File
