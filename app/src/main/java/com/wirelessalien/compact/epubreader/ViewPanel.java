@@ -42,10 +42,10 @@ public abstract class ViewPanel extends Fragment {
 	public void onActivityCreated(Bundle saved) {
 		created = true;
 		super.onActivityCreated(saved);
-		generalLayout = (RelativeLayout) getView().findViewById(
+		generalLayout = getView().findViewById(
 				R.id.GeneralLayout);
-		layout = (RelativeLayout) getView().findViewById(R.id.Content);
-		closeButton = (Button) getView().findViewById(R.id.CloseButton);
+		layout = getView().findViewById(R.id.Content);
+		closeButton = getView().findViewById(R.id.CloseButton);
 
 		// ----- get activity screen size
 		DisplayMetrics metrics = this.getResources().getDisplayMetrics();
@@ -105,7 +105,6 @@ public abstract class ViewPanel extends Fragment {
 		requireActivity().getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
 			@Override
 			public void handleOnBackPressed() {
-				// Call your custom onBackPressed-like method
 				onBackPressed();
 			}
 		});

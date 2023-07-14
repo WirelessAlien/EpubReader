@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -11,9 +12,9 @@ import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.webkit.WebSettings;
 
 import androidx.core.view.MotionEventCompat;
 
@@ -43,19 +44,14 @@ public class BookView extends ViewPanel {
 		webSettings.setAllowUniversalAccessFromFileURLs( true );
 		webSettings.setDomStorageEnabled( true );
 
-		
-		// enable JavaScript for cool things to happen!
-		view.getSettings().setJavaScriptEnabled(true);
-
-		
 		// ----- SWIPE PAGE
 		view.setOnTouchListener(new OnTouchListener() {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
-	
+
 				if (state == ViewStateEnum.books)
-					swipePage(v, event, 0);
-								
+					swipePage( event );
+
 				WebView view = (WebView) v;
 				return view.onTouchEvent(event);
 			}
@@ -65,23 +61,24 @@ public class BookView extends ViewPanel {
 		view.setOnLongClickListener(new OnLongClickListener() {
 			@Override
 			public boolean onLongClick(View v) {
-					Message msg = new Message();
-					msg.setTarget(new Handler() {
-						@Override
-						public void handleMessage(Message msg) {
-							super.handleMessage(msg);
-							String url = msg.getData().getString(
-									getString(R.string.url));
-							if (url != null)
-								navigator.setNote(url );
+				Message msg = new Message();
+				Handler handler = new Handler( Looper.getMainLooper()) {
+					@Override
+					public void handleMessage(Message msg) {
+						super.handleMessage(msg);
+						String url = msg.getData().getString(getString(R.string.url));
+						if (url != null) {
+							navigator.setNote(url);
 						}
-					});
-					view.requestFocusNodeHref(msg);
-				
+					}
+				};
+				msg.setTarget(handler);
+				view.requestFocusNodeHref(msg);
 				return false;
 			}
 		});
-		
+
+
 		view.setWebViewClient(new WebViewClient() {
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
 				try {
@@ -92,19 +89,19 @@ public class BookView extends ViewPanel {
 				return true;
 			}
 		});
-		
+
 		loadPage(viewedPage);
 	}
-	
+
 	public void loadPage(String path)
 	{
 		viewedPage = path;
 		if(created)
 			view.loadUrl(path);
 	}
-	
+
 	// Change page
-	protected void swipePage(View v, MotionEvent event, int book) {
+	protected void swipePage(MotionEvent event) {
 		int action = MotionEventCompat.getActionMasked(event);
 
 		switch (action) {

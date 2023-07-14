@@ -2,7 +2,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/GeneralLayout"
-    android:theme="@style/Theme.Material3.DayNight"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BookView" >
@@ -11,7 +10,7 @@
         android:id="@+id/ViewportLayout"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:padding="1dp" >
+        android:padding="2dp" >
 
         <WebView
             android:id="@+id/Viewport"
@@ -20,13 +19,13 @@
 
         <Button
             android:id="@+id/CloseButton"
-            app:cornerRadius="50dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            style="@style/Widget.MaterialComponents.Button.IconOnly"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            style="@style/OnlyIconBtn"
-            app:icon="@drawable/ic_close" />
+            android:layout_margin="5dp"
+            app:icon="@drawable/ic_close"/>
     </RelativeLayout>
 </RelativeLayout>
 

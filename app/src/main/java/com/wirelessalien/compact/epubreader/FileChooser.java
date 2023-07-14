@@ -38,7 +38,6 @@ public class FileChooser extends AppCompatActivity {
 		executor = Executors.newSingleThreadExecutor();
 		progressBar.setVisibility(View.GONE);
 
-
 		pickFileButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -46,13 +45,42 @@ public class FileChooser extends AppCompatActivity {
 				openFilePicker();
 			}
 		});
+
+		// Check if the activity was started by sharing a file
+		Intent intent = getIntent();
+		String action = intent.getAction();
+		String type = intent.getType();
+		if (Intent.ACTION_SEND.equals(action) && type != null) {
+			if ("application/epub+zip".equals(type)) {
+				Uri sharedFileUri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
+				if (sharedFileUri != null) {
+					handleSharedFile(sharedFileUri);
+				}
+			}
+		}
 	}
+
+	private void handleSharedFile(Uri sharedFileUri) {
+		executor.execute(new Runnable() {
+			@Override
+			public void run() {
+				String filePath = createCopyAndReturnRealPath(sharedFileUri);
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						onCopyFileTaskCompleted(filePath);
+					}
+				});
+			}
+		});
+	}
+
 
 	private void openFilePicker() {
 		pickFileButton.setVisibility(View.GONE); // Hide the pickFileButton
 		progressBar.setVisibility(View.VISIBLE); // Show the progressBar or any other UI element
 		Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-		intent.setType("*/*");
+		intent.setType("application/epub+zip");
 		startActivityForResult(intent, FILE_PICKER_REQUEST_CODE);
 	}
 
@@ -125,6 +153,13 @@ public class FileChooser extends AppCompatActivity {
 		int totalBytes = progressBar.getMax();
 		progressBar.setProgress((int) (bytesRead * 100.0 / totalBytes));
 	}
+	private void shareFile(String filePath) {
+		Intent shareIntent = new Intent(Intent.ACTION_SEND);
+		shareIntent.setType("application/epub+zip");
+		shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(filePath));
+		startActivity(Intent.createChooser(shareIntent, "Share File"));
+	}
+
 }
 
 
