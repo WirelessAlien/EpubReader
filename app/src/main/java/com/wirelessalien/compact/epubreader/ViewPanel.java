@@ -8,11 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 // Abstract fragment that represents a general panel containing only the closing button
@@ -29,26 +32,22 @@ public abstract class ViewPanel extends Fragment {
 	protected boolean created; // tells whether the fragment has been created
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		navigator = ((MainActivity) getActivity()).navigator;
-		View v = inflater.inflate(R.layout.activity_view_panel, container,
-				false);
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View v = inflater.inflate(R.layout.activity_view_panel, container, false);
 		created = false;
 		return v;
 	}
 
 	@Override
-	public void onActivityCreated(Bundle saved) {
+	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
 		created = true;
-		super.onActivityCreated(saved);
-		generalLayout = getView().findViewById(
-				R.id.GeneralLayout);
-		layout = getView().findViewById(R.id.Content);
-		closeButton = getView().findViewById(R.id.CloseButton);
+		generalLayout = view.findViewById(R.id.GeneralLayout);
+		layout = view.findViewById(R.id.Content);
+		closeButton = view.findViewById(R.id.CloseButton);
 
 		// ----- get activity screen size
-		DisplayMetrics metrics = this.getResources().getDisplayMetrics();
+		DisplayMetrics metrics = getResources().getDisplayMetrics();
 		screenWidth = metrics.widthPixels;
 		screenHeight = metrics.heightPixels;
 		// -----
@@ -62,10 +61,37 @@ public abstract class ViewPanel extends Fragment {
 				closeView();
 			}
 		});
+
+		// Fade in animation
+		Animation fadeInAnimation = new AlphaAnimation(0, 1);
+		fadeInAnimation.setDuration(500); // Adjust the duration as needed
+		generalLayout.startAnimation(fadeInAnimation);
+
+		// Null check for getActivity()
+		if (getActivity() instanceof MainActivity) {
+			navigator = ((MainActivity) getActivity()).navigator;
+		}
 	}
 
 	protected void closeView() {
-		navigator.closeView();
+		// Fade out animation
+		Animation fadeOutAnimation = new AlphaAnimation(1, 0);
+		fadeOutAnimation.setDuration(500); // Adjust the duration as needed
+		fadeOutAnimation.setAnimationListener(new Animation.AnimationListener() {
+			@Override
+			public void onAnimationStart(Animation animation) {
+			}
+
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				navigator.closeView();
+			}
+
+			@Override
+			public void onAnimationRepeat(Animation animation) {
+			}
+		});
+		generalLayout.startAnimation(fadeOutAnimation);
 	}
 
 	// change the weight of the general layout
@@ -90,29 +116,12 @@ public abstract class ViewPanel extends Fragment {
 		((MainActivity) getActivity()).errorMessage(message);
 	}
 
-	public void saveState(Editor editor) {
+	public void saveState(@NonNull Editor editor) {
 		editor.putFloat("weight" + index, weight);
 	}
 
-	public void loadState(SharedPreferences preferences) {
+	public void loadState(@NonNull SharedPreferences preferences) {
 		changeWeight(preferences.getFloat("weight" + index, 0.5f));
 	}
 
-	@Override
-	public void onResume() {
-		super.onResume();
-		// Set the back button handler when the fragment is resumed
-		requireActivity().getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
-			@Override
-			public void handleOnBackPressed() {
-				onBackPressed();
-			}
-		});
-	}
-
-	protected void onBackPressed() {
-		//close view
-		closeView();
-
-	}
 }

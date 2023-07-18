@@ -7,13 +7,16 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 public class EpubNavigator {
 	private EpubManipulator book;
 	private ViewPanel view;
-	private MainActivity activity;
+	private final MainActivity activity;
 	private static Context context;
 
-	public EpubNavigator(MainActivity a) {
+	public EpubNavigator(@NonNull MainActivity a) {
 		activity = a;
 		context = a.getBaseContext();
 	}
@@ -32,6 +35,7 @@ public class EpubNavigator {
 			return false;
 		}
 	}
+
 
 	public void setBookPage(String page) {
 		if (book != null) {
@@ -157,7 +161,7 @@ public class EpubNavigator {
 		}
 	}
 
-	public boolean loadState(SharedPreferences preferences) {
+	public boolean loadState(@NonNull SharedPreferences preferences) {
 		boolean ok = true;
 		int current, lang;
 		String name, path;
@@ -186,7 +190,7 @@ public class EpubNavigator {
 		return ok;
 	}
 
-	public void loadViews(SharedPreferences preferences) {
+	public void loadViews(@NonNull SharedPreferences preferences) {
 		view = newPanelByClassName( preferences.getString( getS( R.string.ViewType ) + 0, "" ) );
 		if (view != null) {
 			activity.addPanel( view );
@@ -195,7 +199,8 @@ public class EpubNavigator {
 		}
 	}
 
-	private ViewPanel newPanelByClassName(String className) {
+	@Nullable
+	private ViewPanel newPanelByClassName(@NonNull String className) {
 		if (className.equals(BookView.class.getName()))
 			return new BookView();
 		if (className.equals(DataView.class.getName()))

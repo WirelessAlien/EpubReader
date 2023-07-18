@@ -7,8 +7,12 @@ import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
@@ -21,9 +25,18 @@ public class MainActivity extends AppCompatActivity {
 	protected String[] settings;
 	protected String epub_location;
 
+	private ActivityResultLauncher<Intent> fileChooserLauncher;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		// Set the initial opacity of the activity to 0
+		AlphaAnimation fadeIn = new AlphaAnimation(0, 1);
+		fadeIn.setDuration(500); // Set the duration for the fade-in animation
+
+		// Apply the fade-in animation to the activity's root view
+		getWindow().getDecorView().setAnimation(fadeIn);
 		setContentView(R.layout.activity_main);
 
 		navigator = new EpubNavigator(this);
@@ -34,6 +47,19 @@ public class MainActivity extends AppCompatActivity {
 		SharedPreferences preferences = getPreferences(MODE_PRIVATE);
 		loadState(preferences);
 		navigator.loadViews(preferences);
+
+		fileChooserLauncher = registerForActivityResult(
+				new ActivityResultContracts.StartActivityForResult(),
+				result -> {
+					if (result.getResultCode() == RESULT_OK) {
+						Intent data = result.getData();
+						// Handle the result here
+						if (data != null) {
+							data.getStringExtra( "epub_location" );
+						}
+					}
+				}
+		);
 
 		if (panelCount == 0) {
 			epub_location = getIntent().getStringExtra("epub_location");
@@ -69,22 +95,20 @@ public class MainActivity extends AppCompatActivity {
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
+
 		if (panelCount == 0) {
 			SharedPreferences preferences = getPreferences(MODE_PRIVATE);
 			navigator.loadViews(preferences);
 		}
 	}
 
-
 	private void openFileChooser() {
-
-		//open file chooser class
+		// Open file chooser class
 		Intent goToChooser = new Intent(this, FileChooser.class);
 		goToChooser.putExtra(getString(R.string.second), getString(R.string.time));
-		startActivityForResult(goToChooser, 0);
-
-
+		fileChooserLauncher.launch(goToChooser);
 	}
+
 
 	// ---- Menu
 	@Override
@@ -163,6 +187,30 @@ public class MainActivity extends AppCompatActivity {
 
 
 	//back pressed close the book
+	@Override
+	public void onBackPressed() {
+		if (panelCount == 0) {
+			AlphaAnimation fadeOut = new AlphaAnimation(1, 0);
+			fadeOut.setDuration(500);
+
+			fadeOut.setAnimationListener(new Animation.AnimationListener() {
+				@Override
+				public void onAnimationStart(Animation animation) {}
+
+				@Override
+				public void onAnimationEnd(Animation animation) {
+					MainActivity.super.onBackPressed();
+				}
+
+				@Override
+				public void onAnimationRepeat(Animation animation) {}
+			});
+
+			getWindow().getDecorView().setAnimation(fadeOut);
+		} else {
+			navigator.closeView();
+		}
+	}
 
 
 	// ---- Change Style

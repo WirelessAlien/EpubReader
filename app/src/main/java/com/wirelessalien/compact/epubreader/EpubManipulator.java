@@ -351,7 +351,6 @@ public class EpubManipulator {
 
 	// create an HTML page with book metadata
 	// TODO: style it and escape metadata values
-	// TODO: use StringBuilder
 	public String metadata() {
 		List<String> tmp;
 		Metadata metadata = book.getMetadata();
@@ -385,7 +384,6 @@ public class EpubManipulator {
 			}
 		}
 
-		// TODO: extend lib to get multiple languages?
 		// Language
 		html.append( getS( R.string.languageMeta ) ).append( metadata.getLanguage() ).append( "</td></tr>" );
 

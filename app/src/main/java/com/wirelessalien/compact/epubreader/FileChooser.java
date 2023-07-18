@@ -1,6 +1,5 @@
 package com.wirelessalien.compact.epubreader;
 
-
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -11,6 +10,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.File;
@@ -109,6 +109,7 @@ public class FileChooser extends AppCompatActivity {
 		}
 	}
 
+	@Nullable
 	private String createCopyAndReturnRealPath(Uri uri) {
 		final ContentResolver contentResolver = getContentResolver();
 		if (contentResolver == null)
@@ -152,12 +153,6 @@ public class FileChooser extends AppCompatActivity {
 	private void publishProgress(int bytesRead) {
 		int totalBytes = progressBar.getMax();
 		progressBar.setProgress((int) (bytesRead * 100.0 / totalBytes));
-	}
-	private void shareFile(String filePath) {
-		Intent shareIntent = new Intent(Intent.ACTION_SEND);
-		shareIntent.setType("application/epub+zip");
-		shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(filePath));
-		startActivity(Intent.createChooser(shareIntent, "Share File"));
 	}
 
 }
