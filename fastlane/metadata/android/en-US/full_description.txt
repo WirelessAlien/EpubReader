@@ -12,3 +12,4 @@ Features:
 Drawbacks:
   No Library Support
   For Larger File It Takes Some Time To Load Epub File
+  Some File May Fail To Render
