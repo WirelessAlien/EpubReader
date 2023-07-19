@@ -51,7 +51,7 @@ public class EpubNavigator {
 	public void loadPageIntoView(String pathOfPage) {
 		ViewStateEnum state = ViewStateEnum.notes;
 
-		if (book != null && (pathOfPage.equals( book.getCurrentPageURL() ) || book.getPageIndex( pathOfPage ) >= 0))
+		if (book != null && (pathOfPage.equals( book.getCurrentPageURL() ) || book.getPageIndex( pathOfPage ) == -1))
 			state = ViewStateEnum.books;
 
 		if (view == null || !(view instanceof BookView))
@@ -115,8 +115,12 @@ public class EpubNavigator {
 	}
 
 	public void changeCSS(String[] settings) {
-		book.addCSS( settings );
-		loadPageIntoView( book.getCurrentPageURL() );
+		if (book != null) {
+			book.addCSS(settings);
+			loadPageIntoView(book.getCurrentPageURL());
+		} else {
+			Log.d( getS( R.string.error_CannotChangeCSS ), getS( R.string.Book_Stream ) + 1 );
+		}
 	}
 
     public void changePanel(ViewPanel p) {

@@ -124,4 +124,5 @@ public abstract class ViewPanel extends Fragment {
 		changeWeight(preferences.getFloat("weight" + index, 0.5f));
 	}
 
+
 }

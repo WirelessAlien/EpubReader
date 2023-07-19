@@ -189,28 +189,13 @@ public class MainActivity extends AppCompatActivity {
 	//back pressed close the book
 	@Override
 	public void onBackPressed() {
-		if (panelCount == 0) {
-			AlphaAnimation fadeOut = new AlphaAnimation(1, 0);
-			fadeOut.setDuration(500);
-
-			fadeOut.setAnimationListener(new Animation.AnimationListener() {
-				@Override
-				public void onAnimationStart(Animation animation) {}
-
-				@Override
-				public void onAnimationEnd(Animation animation) {
-					MainActivity.super.onBackPressed();
-				}
-
-				@Override
-				public void onAnimationRepeat(Animation animation) {}
-			});
-
-			getWindow().getDecorView().setAnimation(fadeOut);
-		} else {
-			navigator.closeView();
-		}
+		//exit app
+		if (panelCount <= 0)
+			finish();
+		else
+			super.onBackPressed();
 	}
+
 
 
 	// ---- Change Style

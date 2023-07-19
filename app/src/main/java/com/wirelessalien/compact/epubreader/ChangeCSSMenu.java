@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -400,7 +401,11 @@ public class ChangeCSSMenu extends DialogFragment {
 						// .toString(), editTextBottom.getText()
 						// .toString(), editTextLeft.getText().toString(),
 						// editTextRight.getText().toString());
-						a.setCSS();
+						if (a != null) {
+							a.setCSS();
+						} else {
+							Log.d("a", "null");
+						}
 
 						SharedPreferences.Editor editor = preferences.edit();
 						editor.putInt("spinColorValue", colInt);
@@ -411,7 +416,7 @@ public class ChangeCSSMenu extends DialogFragment {
 						editor.putInt("spinLineHValue", heightInt);
 						editor.putInt("spinLeftValue", marginLInt);
 						editor.putInt("spinRightValue", marginRInt);
-						editor.commit();
+						editor.apply();
 					}
 				});
 		builder.setNegativeButton(getString(R.string.Cancel),
