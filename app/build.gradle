@@ -32,6 +32,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    configurations {
+        all*.exclude group: 'xmlpull', module: 'xmlpull'
+    }
+
 }
 
 dependencies {
@@ -43,11 +47,5 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-    //epublib
-    implementation project(':slf4j-android-1.6.1-RC1')
-    implementation project(':epublib-core-latest')
-
-
-
-
+    implementation 'com.positiondev.epublib:epublib-core:3.1'
 }
